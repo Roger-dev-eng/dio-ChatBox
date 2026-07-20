@@ -93,6 +93,7 @@ body {
     border-top: 1px solid var(--border);
     gap: 10px;
     background: #ffffff;
+    align-items: center;
 }
 
 #msgInput {
@@ -107,26 +108,46 @@ body {
     background: #f3f3f3;
 }
 
-#sendBtn {
-    padding: 12px 20px;
-    background: var(--accent);
+.input-actions {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    padding: 12px 16px;
     border: none;
     border-radius: 10px;
-    color: white;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
+button:hover {
+    transform: translateY(-1px);
+}
+
+#sendBtn {
+    background: var(--accent);
+    color: white;
+}
+
 #sendBtn:hover {
     background: var(--accent-strong);
-    transform: translateY(-1px);
 }
 
 #sendBtn:disabled {
     background: #93b4ab;
     cursor: not-allowed;
     transform: none;
+}
+
+.secondary-btn {
+    background: #eef2f4;
+    color: var(--ink);
+}
+
+.secondary-btn:hover {
+    background: #e2e8eb;
 }
 
 @media (max-width: 720px) {
