@@ -111,9 +111,10 @@ body {
 .input-actions {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-button {
+button, .file-upload {
     padding: 12px 16px;
     border: none;
     border-radius: 10px;
@@ -122,7 +123,13 @@ button {
     transition: background 0.2s ease, transform 0.2s ease;
 }
 
-button:hover {
+.file-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover, .file-upload:hover {
     transform: translateY(-1px);
 }
 

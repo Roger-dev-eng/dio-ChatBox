@@ -26,6 +26,11 @@
                 autocomplete="off"
             >
             <div class="input-actions">
+                <label class="file-upload secondary-btn" for="fileInput">
+                    <input id="fileInput" type="file" accept=".txt,.md,.csv,.json" hidden>
+                    <span>📎 Arquivo</span>
+                </label>
+                <button id="uploadBtn" class="secondary-btn" type="button">Enviar arquivo</button>
                 <button id="clearBtn" class="secondary-btn" type="button">Novo chat</button>
                 <button id="sendBtn" type="button">Enviar</button>
             </div>
