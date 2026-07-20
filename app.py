@@ -6,6 +6,8 @@ import logging
 import os
 import time
 from werkzeug.utils import secure_filename
+from PyPDF2 import PdfReader
+from docx import Document
 
 app = Flask(__name__, static_folder="frontend", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
@@ -37,9 +39,9 @@ def api_upload():
     if not filename:
         return jsonify({"error": "Nome de arquivo inválido."}), 400
 
-    allowed_extensions = (".txt", ".md", ".csv", ".json")
+    allowed_extensions = (".txt", ".md", ".csv", ".json", ".pdf", ".docx")
     if not filename.lower().endswith(allowed_extensions):
-        return jsonify({"error": "Formato não suportado. Envie um arquivo .txt, .md, .csv ou .json."}), 400
+        return jsonify({"error": "Formato não suportado. Envie um arquivo .txt, .md, .csv, .json, .pdf ou .docx."}), 400
 
     data = file_storage.read()
     if not data.strip():
@@ -49,7 +51,20 @@ def api_upload():
     with open(save_path, "wb") as handle:
         handle.write(data)
 
-    content = data.decode("utf-8", errors="ignore")
+    content = ""
+    lower_name = filename.lower()
+    if lower_name.endswith(".pdf"):
+        reader = PdfReader(save_path)
+        content = "\n".join(page.extract_text() or "" for page in reader.pages)
+    elif lower_name.endswith(".docx"):
+        doc = Document(save_path)
+        content = "\n".join(paragraph.text for paragraph in doc.paragraphs if paragraph.text)
+    else:
+        content = data.decode("utf-8", errors="ignore")
+
+    if not content.strip():
+        return jsonify({"error": "Não foi possível extrair texto do arquivo."}), 400
+
     knowledge_base.add_document(filename, content)
     bot.set_knowledge_base(knowledge_base)
 
