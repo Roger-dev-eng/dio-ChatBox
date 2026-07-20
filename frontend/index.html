@@ -13,27 +13,24 @@
     <div class="chat-container">
 
         <div class="header">
-            Chatbot
+            <span>Chatbot</span>
+            <button id="clearBtn" class="secondary-btn header-btn" type="button">Novo chat</button>
         </div>
 
         <div id="messages" class="messages"></div>
 
         <div class="input-container">
+            <label class="file-upload" for="fileInput" title="Adicionar arquivo">
+                <input id="fileInput" type="file" accept=".txt,.md,.csv,.json" hidden>
+                <span>+</span>
+            </label>
             <input 
                 id="msgInput" 
                 type="text" 
                 placeholder="Digite uma mensagem..." 
                 autocomplete="off"
             >
-            <div class="input-actions">
-                <label class="file-upload secondary-btn" for="fileInput">
-                    <input id="fileInput" type="file" accept=".txt,.md,.csv,.json" hidden>
-                    <span>📎 Arquivo</span>
-                </label>
-                <button id="uploadBtn" class="secondary-btn" type="button">Enviar arquivo</button>
-                <button id="clearBtn" class="secondary-btn" type="button">Novo chat</button>
-                <button id="sendBtn" type="button">Enviar</button>
-            </div>
+            <button id="sendBtn" type="button">Enviar</button>
         </div>
 
     </div>

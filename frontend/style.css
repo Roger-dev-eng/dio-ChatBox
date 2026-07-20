@@ -38,13 +38,27 @@ body {
 }
 
 .header {
-    padding: 22px;
+    padding: 18px 22px;
     background: linear-gradient(120deg, var(--accent), var(--accent-strong));
     color: white;
     font-size: 22px;
     font-weight: 600;
-    text-align: center;
     letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.16);
+    color: white;
+}
+
+.header-btn:hover {
+    background: rgba(255,255,255,0.24);
 }
 
 .messages {
@@ -96,12 +110,32 @@ body {
     align-items: center;
 }
 
+.file-upload {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #eef2f4;
+    color: var(--accent-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.file-upload:hover {
+    background: #e2e8eb;
+}
+
 #msgInput {
     flex: 1;
     padding: 12px 14px;
-    border-radius: 10px;
+    border-radius: 999px;
     border: 1px solid var(--border);
     font-size: 16px;
+    outline: none;
 }
 
 #msgInput:disabled {
@@ -114,19 +148,13 @@ body {
     flex-wrap: wrap;
 }
 
-button, .file-upload {
+button {
     padding: 12px 16px;
     border: none;
-    border-radius: 10px;
+    border-radius: 999px;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.file-upload {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 button:hover, .file-upload:hover {
@@ -136,6 +164,7 @@ button:hover, .file-upload:hover {
 #sendBtn {
     background: var(--accent);
     color: white;
+    min-width: 92px;
 }
 
 #sendBtn:hover {
