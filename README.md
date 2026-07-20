@@ -1,85 +1,98 @@
-#  Chatbot IA 
+﻿# Chatbot IA com RAG
 
-Este projeto é um chatbot inteligente construído utilizando **Flask**. O modelo de linguagem utilizado é o **LLaMA 3.1 8B Instant**, fornecido gratuitamente pela Groq.
-<img width="1338" height="898" alt="Captura de tela 2026-01-17 202214" src="https://github.com/user-attachments/assets/ceb772bf-9a73-4d56-9eb7-caf3abf6cae1" />
+Este projeto é um chatbot inteligente construído com Flask e integrado à API da Groq. Além de responder mensagens de forma natural, ele também permite enviar documentos e responder perguntas com base no conteúdo carregado, usando uma abordagem simples de RAG.
 
 ## Conteúdo
 - [Objetivo](#objetivo-do-projeto)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Como rodar o sistema](#como-o-rodar-o-sistema)
+- [Funcionalidades](#funcionalidades)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Como rodar o sistema](#como-rodar-o-sistema)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 - [Conclusão](#conclusão)
 
-## Objetivo do Projeto:
-O objetivo deste chatbot é oferecer uma interface simples, rápida e intuitiva para interagir com um modelo de IA generativa.  
-Ele permite que o usuário envie mensagens e receba respostas diretamente da API de inferência da Groq.
+## Objetivo do projeto
+O objetivo deste projeto é oferecer uma interface simples e intuitiva para conversar com uma IA generativa, com a possibilidade de carregar documentos e obter respostas baseadas no conteúdo desses arquivos.
 
-Inicialmente, o projeto foi desenvolvido utilizando **Azure Openai**, e posteriormentefoi migrado para a Groq.
+## Funcionalidades
+- Conversa com o modelo da Groq.
+- Recomeço de conversa com o botão “Novo chat”.
+- Upload de documentos em texto, Markdown, CSV, JSON, PDF e Word (.docx).
+- Respostas com base no conteúdo do documento carregado, usando uma lógica básica de RAG.
+- Interface responsiva com barra de entrada otimizada para chat.
 
-##  Estrutura do Projeto
+## Estrutura do projeto
 
-```
+```text
 ChatBot/
 │
 ├── app.py
-├── .env
 ├── requirements.txt
+├── README.md
 │
 ├── chatbot_core/
-│ ├── init.py
-│ ├── chatbot.py
-│ └── groq_client.py
+│   ├── chatbot.py
+│   ├── groq_client.py
+│   └── rag.py
 │
 └── frontend/
-  ├── index.html
-  ├── style.css
-  └── script.js
+    ├── index.html
+    ├── style.css
+    └── script.js
 ```
-### 🔹 **app.py**
-Servidor Flask que:
-- expõe a rota `/api/chat` consumida pelo JavaScript
-- conecta o backend ao modelo Groq
 
-### 🔹 **chatbot_core/**
-Contém toda a lógica do chatbot:
-- integração com a API da Groq  
-- formatação das mensagens  
-- sistema de contexto básico  
+### app.py
+Servidor Flask que expõe as rotas de conversa e upload de arquivos.
 
-### 🔹 **frontend/**
-Interface visual do chat:
-- página `index.html`
-- estilos modernos em `style.css`
-- envio de mensagens via JavaScript (`script.js`)
+### chatbot_core/
+Contém a lógica do chatbot, integração com a Groq e o mecanismo simples de RAG.
 
-##  Como o rodar o sistema
+### frontend/
+Interface visual do chat, incluindo envio de mensagens e upload de arquivos.
 
-1. Instale as dependências:
+## Como rodar o sistema
+
+1. Crie e ative um ambiente virtual:
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+2. Instale as dependências:
+
 ```bash
 pip install -r requirements.txt
 ```
-2. Configure sua chave da Groq:\
-Crie o arquivo .env:
+
+3. Crie um arquivo `.env` com sua chave da Groq:
+
 ```bash
-GROQ_API_KEY= SUA_CHAVE_AQUI
+GROQ_API_KEY=SUA_CHAVE_AQUI
 ```
-3. Rode o servidor:
+
+4. Inicie o servidor:
+
 ```bash
 python app.py
 ```
-4. Abra no navegador:
-```bash
+
+5. Acesse no navegador:
+
+```text
 http://127.0.0.1:5000
 ```
-## Tecnologias Utilizadas
-- Python 
-- Flask  
-- Flask-CORS  
-- Groq API (LLaMA 3.1 8B Instant)  
-- python-dotenv  
-- HTML5  
-- CSS3  
-- JavaScript (fetch API)
 
-#  Conclusão: 
-Esta jornada demonstrou como transformar um código básico em uma aplicação completa e profissional. O processo ensinou muito além da programação, compreendemos inicialmente o ecossistema Azure AI Foundry, desde conceitos de tokens e custos até implementação de RAG com Azure AI Search. A partir disso, foi implementado diferentes outras tecnologias. Essa base sólida abre caminho para projetos mais ambiciosos com IA, sempre mantendo foco em qualidade.
+## Tecnologias utilizadas
+- Python
+- Flask
+- Flask-CORS
+- Groq API
+- python-dotenv
+- PyPDF2
+- python-docx
+- HTML5
+- CSS3
+- JavaScript
+
+## Conclusão
+Este projeto mostra como transformar uma ideia simples em uma aplicação de chat com IA, adicionando recursos como recomeço de conversa e uso de documentos para enriquecer as respostas. Ele serve como base para evoluir para soluções mais completas de RAG e automação com IA.
